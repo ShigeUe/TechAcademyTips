@@ -1,0 +1,21 @@
+@font-face {
+    font-family: "NotoSans";
+    font-weight: 400;
+    src: url("../fonts/MPLUSRounded1c-Regular.woff2") format("woff2"),
+         url("../fonts/MPLUSRounded1c-Regular.woff") format("woff");
+}
+
+@font-face {
+    font-family: "NotoSans";
+    font-weight: 500 700;
+    src: url("../fonts/MPLUSRounded1c-Bold.woff2") format("woff2"),
+         url("../fonts/MPLUSRounded1c-Bold.woff") format("woff");
+}
+
+body {
+    font-family: NotoSans, sans-serif;
+}
+
+h3 {
+    font-weight: 400;
+}
