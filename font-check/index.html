@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Webフォントプレビュー</title>
+    <style>
+        #RESULT {
+            display: block;
+            width: 640px;
+            height: 480px;
+            margin-top: 50px;
+            font-size: 20px;
+            font-family: 'previewFont', sans-serif;
+        }
+
+        #FONT {
+            border: 1px solid #ccc;
+            padding: 5px;
+            border-radius: 4px;
+        }
+
+        #FONTSIZECONTROLL {
+            margin-top: 1em;
+        }
+
+        #RUN {
+            font-size: 18px;
+        }
+    </style>
+</head>
+<body>
+    <p>フォントファイルを選んでください：<input type="file" name="font" id="FONT"></p>
+    <p><button type="button" id="RUN">フォントをテキストエリアに反映</button></p>
+    <textarea id="RESULT">吾輩は猫である。名前はまだない。
+ABCDEFGHIJKLMNOPQRSTUVWXYZ
+abcdefghijklmnopqrstuvwxyz
+0123456789</textarea>
+    <div id="FONTSIZECONTROLL">
+        FONT SIZE:<button type="button" id="SIZE-L">＋</button> <span id="FONTSIZE">20</span> <button type="button" id="SIZE-S">－</button>
+    </div>
+
+
+
+
+
+
+
+
+    <script>
+        "use strict";
+
+        let fontSize = 20;
+        const RESULTAREA = document.getElementById('RESULT');
+        const FONTSIZE = document.getElementById('FONTSIZE');
+
+        document.getElementById('RUN').addEventListener('click', async () => {
+            const font = document.getElementById('FONT');
+            if (font.files) {
+                const bin = await font.files[0].arrayBuffer();
+                const fontface = new FontFace('previewFont', bin);
+                await fontface.load();
+                document.fonts.add(fontface);
+            }
+        });
+        document.getElementById('SIZE-L').addEventListener('click', () => {
+            fontSize++;
+            RESULTAREA.style.fontSize = fontSize + 'px';
+            FONTSIZE.innerText = fontSize;
+        });
+        document.getElementById('SIZE-S').addEventListener('click', () => {
+            fontSize--;
+            RESULTAREA.style.fontSize = fontSize + 'px';
+            FONTSIZE.innerText = fontSize;
+        });
+    </script>
+</body>
+</html>
